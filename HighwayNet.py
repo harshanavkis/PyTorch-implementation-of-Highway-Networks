@@ -8,7 +8,7 @@ class FcNet(nn.Module):
 	"""
 		A more robust fully connected network
 	"""
-	def __init__(self,input_size,activation_type='ReLU'): #activation_type is a string containing the name of the activation
+	def __init__(self,input_size,output_size,activation_type='ReLU'): #activation_type is a string containing the name of the activation
 		"""
 			We create a group of fc layers
 		"""
@@ -23,13 +23,12 @@ class FcNet(nn.Module):
 		"""
 		h_out = self.activation(self.plain(x))
 		return h_out
-		t_out = self.gate_activation(self.gate(x))
-		return torch.add(torch.mul(h_out,t_out),torch.mul((1.0-t_out),x)) 
 
 
 class HighwayFcNet(nn.Module):
 	"""
 		A more robust fully connected network
+		return: H*T + (1-T)x
 	"""
 	def __init__(self, input_size, numLayers, activation_type='ReLU',gate_activation='Sigmoid',bias=-1.0): #activation_type is a string containing the name of the activation
 		"""
@@ -38,8 +37,8 @@ class HighwayFcNet(nn.Module):
 			Different number of units can be achieved through Plain Fully connected layers
 		"""
 		super(HighwayFcNet,self).__init__()
-		self.activation = gA(activation_type)
-		self.gate_activation = gA(activation_type)
+		self.activation = gA(activation_type) #H func
+		self.gate_activation = gA(gate_activation)#T func
 		self.plain = nn.Linear(input_size,input_size)
 		self.gate = nn.Linear(input_size,input_size)
 		self.gate.bias.data.fill_(bias)

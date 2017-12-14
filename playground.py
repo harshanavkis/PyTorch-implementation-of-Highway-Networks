@@ -2,6 +2,7 @@ import torch
 from torch.autograd import Variable
 import torch.nn as nn
 import HighwayNet as HN
+import models
 
 #imports to load datasets
 import torchvision
@@ -12,12 +13,12 @@ import torch.optim as optim
 #user specified data
 s = input('Enter the number of activation units in each layer(Plain FC net):')
 s = s.split(" ")
-dimArr = [int(i) for i in s]
+hiddenDimArr = [int(i) for i in s]
 
 s = input('Enter the number of units in each Highway FC layer(Enter a single number):')
 sizeHfc = int(s)
 
-numLayers = len(dimArr) #making number of layers in both nets equal
+numLayers = len(hiddenDimArr) #making number of hidden layers in both nets equal
 activationFunc = input('Enter the activation function(Refer to activations.py for more details):')
 
 #load mnist data
@@ -33,9 +34,11 @@ testLoader = torch.utils.data.DataLoader(testset, batch_size=4,
 												shuffle=False, num_workers=2) 
 
 
+output_size = 10
+
 #create the FC and HFC nets
-fcNet = HN.FcNet(dimArr, numLayers, activationFunc)
-HfcNet = HN.HighwayFcNet(sizeHfc, numLayers, activationFunc)
+
+
 
 #loss func and optimizer
 criterion = nn.CrossEntropyLoss()
