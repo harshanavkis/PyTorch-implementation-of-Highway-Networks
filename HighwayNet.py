@@ -4,14 +4,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-
 class FcNet(nn.Module):
 	"""
 		A more robust fully connected network
 	"""
 	def __init__(self,dimArr,numLayers):
 		"""
-			We create a dictionary of layers
+			We create a group of fc layers
 		"""
 		super(FcNet,self).__init__()
 		# self.layers = {}
@@ -33,7 +32,13 @@ class FcNet(nn.Module):
 
 
 class HighwayFcNet(nn.Module):
+	"""
+		A more robust fully connected network
+	"""
 	def __init__(self, size, numLayers):
+		"""
+			We create a group of highway fc layers
+		"""
 		super(HighwayFcNet,self).__init__()
 		self.numLayers = numLayers
 		for i in range(numLayers):
