@@ -16,3 +16,5 @@ def getActivation(activation_type):
 		return vars(nn)[m]()
 	if activation_type == 'Tanh':
 		return vars(nn)[m]()
+	if activation_type == 'Softmax':
+		return vars(nn)[m]()
