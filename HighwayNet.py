@@ -15,7 +15,7 @@ class FcNet(nn.Module):
 		super(FcNet,self).__init__()
 		# self.layers = {}
 		self.activation = gA(activation_type)
-		self.plain = nn.Linear(input_size,input_size)
+		self.plain = nn.Linear(input_size,output_size)
 
 	def forward(self,x):
 		"""
