@@ -16,6 +16,7 @@ class FcNet(nn.Module):
 		# self.layers = {}
 		self.activation = gA(activation_type)
 		self.plain = nn.Linear(input_size,output_size)
+		nn.init.xavier_uniform(self.plain.weight)
 
 	def forward(self,x):
 		"""
@@ -40,6 +41,7 @@ class HighwayFcNet(nn.Module):
 		self.activation = gA(activation_type) #H func
 		self.gate_activation = gA(gate_activation)#T func
 		self.plain = nn.Linear(input_size,input_size)
+		nn.init.xavier_uniform(self.plain.weight)
 		self.gate = nn.Linear(input_size,input_size)
 		self.gate.bias.data.fill_(bias)
 
