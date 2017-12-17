@@ -9,21 +9,21 @@ Implementation of Fully Connected Highway Networks found in [this](https://arxiv
 * torch==0.2.1+a4fc05a
 * torchvision==0.1.9
 
-## Getting started
+### Getting started
 
 models.py has Fully connected and Highway models for Deep Nets.
 
-'''
+```
 FcNet = models.FCModel(input_size,output_size, numLayers, hiddenDimArr, activation) #hiddenDimArr denotes the hidden layers dimensions
 HfcNet = models.HighwayFcModel(inDims, input_size, output_size, numLayers, activation, gate_activation, bias) #inDims is to change the input to a desired dimension
-'''
+```
 
 After initialization to use them we just call the forward method.
 
-'''
+```
 fcOut = FcNet.forward(input)
 HfcOut = HfcNet.forward(input)
-'''
+```
 
 # Defaults
 
