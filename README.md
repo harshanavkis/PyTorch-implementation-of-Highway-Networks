@@ -25,7 +25,9 @@ fcOut = FcNet.forward(input)
 HfcOut = HfcNet.forward(input)
 ```
 
-# Defaults
+For a more elaborate example check out playground.py
+
+### Defaults
 
 The deafult initializations are:
 
@@ -34,6 +36,6 @@ The deafult initializations are:
 * xavier initialization of weights
 * biases are initialized to -1
 
-## License
+### License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
